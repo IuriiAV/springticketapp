@@ -6,7 +6,7 @@ import org.telran.ticketapp.com.model.Ticket;
 
 import java.util.*;
 
-@Repository
+//@Repository
 public class InMemoryTicketRepositoryImpl implements TicketRepository {
 
     private Map<String, Ticket> storage = new HashMap<>();

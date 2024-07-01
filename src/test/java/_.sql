@@ -1,0 +1,6 @@
+--CREATE TABLE Ticket (
+--id varchar(64) not null,
+--name varchar(64) not null,
+--price numeric(15,2),
+--primary key (id)
+--);
