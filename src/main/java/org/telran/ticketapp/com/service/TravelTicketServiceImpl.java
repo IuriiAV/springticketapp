@@ -12,6 +12,7 @@ import java.util.Optional;
 @Service
 public class TravelTicketServiceImpl implements TravelTicketService {
 
+    //save,findOne,findAll,findById,delete
     @Autowired
     private TravelTicketJpaRepository repository;
 
@@ -36,5 +37,15 @@ public class TravelTicketServiceImpl implements TravelTicketService {
     public void delete(Long id) {
         TravelTicket entity = getById(id);
         repository.delete(entity);
+    }
+
+    @Override
+    public TravelTicket getByTitle(String title) {
+        return repository.findByTitle(title);
+    }
+
+    @Override
+    public TravelTicket getCheapest() {
+        return repository.getCheapestTicket();
     }
 }

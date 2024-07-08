@@ -25,4 +25,13 @@ public class TravelTicketController {
         return service.create(travelTicket);
     }
 
+    @GetMapping("/search")
+    public TravelTicket getByTitle(@RequestParam String title) {
+        return service.getByTitle(title);
+    }
+
+    @GetMapping("/cheapest")
+    public TravelTicket getByCheapest() {
+        return service.getCheapest();
+    }
 }

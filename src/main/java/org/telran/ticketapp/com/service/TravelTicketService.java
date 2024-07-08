@@ -13,4 +13,8 @@ public interface TravelTicketService {
     TravelTicket create(TravelTicket ticket);
 
     void delete(Long id);
+
+    TravelTicket getByTitle(String title);
+
+    TravelTicket getCheapest();
 }
