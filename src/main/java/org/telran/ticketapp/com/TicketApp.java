@@ -18,4 +18,13 @@ public class TicketApp {
     //DEBUG    4
     //TRACE    5
     //ALL
+
+    //StudentCourses
+    // ID  | name | course_id
+
+    // JOIN  select t1.name, t2.course_name,t2.course_description from StudentCourses t1
+    // left join Courses t2 on t2.id = t1.course_id
+
+    //Courses
+    //ID   |course name | course description
 }
