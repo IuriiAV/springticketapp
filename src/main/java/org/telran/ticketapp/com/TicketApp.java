@@ -11,4 +11,11 @@ public class TicketApp {
     public static void main(String[] args) {
         SpringApplication.run(TicketApp.class, args);
     }
+
+    //ERROR    1
+    //WARN     2
+    //INFO     3
+    //DEBUG    4
+    //TRACE    5
+    //ALL
 }

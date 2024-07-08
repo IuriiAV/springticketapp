@@ -4,12 +4,14 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity  // объекты этого класса это строки в таблице базы данных
 @Table(name = "travel_tickets")
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class TravelTicket {
 
     @Id
