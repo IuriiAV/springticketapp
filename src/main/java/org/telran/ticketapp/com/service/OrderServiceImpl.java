@@ -4,7 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.telran.ticketapp.com.entity.Order;
 import org.telran.ticketapp.com.entity.User;
+import org.telran.ticketapp.com.model.OrderState;
 import org.telran.ticketapp.com.repository.OrderRepository;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -20,9 +23,18 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order add(Order order, Long userId) {
         User user = userService.findById(userId);
-        user.getOrders().add(order);
-        userService.create(user);
+        order.setUser(user);
+        order.setState(OrderState.UNPAID);
+        return orderRepository.save(order);
+    }
 
-        return order;
+    @Override
+    public List<Order> getAll() {
+        return orderRepository.findAll();
+    }
+
+    @Override
+    public Order getByid(Long orderId) {
+        return orderRepository.findById(orderId).get();
     }
 }

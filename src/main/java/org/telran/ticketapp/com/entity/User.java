@@ -1,9 +1,11 @@
 package org.telran.ticketapp.com.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +15,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class User {
 
     @Id
@@ -37,8 +40,15 @@ public class User {
     @JoinColumn(name = "user_id")
     private Set<TravelTicket> travelTicket = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    //OneToMany ->Unidirectional
+    //user -> order -> travel_card
+
+    //OneToMany ->Bidirectional
+    //user <-> order -> travel_card
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    //@JoinColumn(name = "user_id")
+    @JsonManagedReference
     private Set<Order> orders = new HashSet<>();
 
 }
