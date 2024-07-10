@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "user_info")
 @Getter
@@ -20,8 +23,22 @@ public class User {
 
     private String surname;
 
-    @OneToOne(cascade = CascadeType.ALL)
-   // @JoinColumn(name = "travel_id", referencedColumnName = "id")
-    private TravelTicket travelTicket;
+    //user | id | name |
+
+    //travel_ticket | id | name | user_id
+
+    //    user
+    //   / | \
+    //  t1 t2 t3
+    // select t1.* from user_info  t1 inner join travel_ticket t2
+    // on t1.id = t2.user_id
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private Set<TravelTicket> travelTicket = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private Set<Order> orders = new HashSet<>();
 
 }

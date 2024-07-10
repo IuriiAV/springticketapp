@@ -1,6 +1,7 @@
 package org.telran.ticketapp.com.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 import org.telran.ticketapp.com.entity.TravelTicket;
 import org.telran.ticketapp.com.entity.User;
@@ -32,5 +33,10 @@ public class UserServiceImpl implements UserService {
 //        TravelTicket travelTicket = user.getTravelTicket();
 //        ticketService.create(travelTicket);
         return repository.save(user);
+    }
+
+    @Override
+    public User findById(long id) {
+        return repository.findById(id).get();
     }
 }
