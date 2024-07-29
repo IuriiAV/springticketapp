@@ -1,4 +1,4 @@
-package org.telran.ticketapp.com.service;
+package org.telran.ticketapp.com.security;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.telran.ticketapp.com.entity.User;
+import org.telran.ticketapp.com.service.UserService;
 
 import java.util.List;
 
