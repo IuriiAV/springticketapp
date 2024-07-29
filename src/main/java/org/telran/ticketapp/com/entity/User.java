@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -25,6 +26,10 @@ public class User {
     private String name;
 
     private String surname;
+
+    private String email;
+
+    private String password;
 
     //user | id | name |
 

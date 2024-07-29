@@ -10,6 +10,7 @@ import org.telran.ticketapp.com.entity.User;
 import org.telran.ticketapp.com.repository.UserJpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -43,5 +44,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findById(long id) {
         return repository.findById(id).get();
+    }
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+        return repository.findByEmail(email);
     }
 }

@@ -1,6 +1,7 @@
 package org.telran.ticketapp.com.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.telran.ticketapp.com.entity.User;
 import org.telran.ticketapp.com.service.UserService;
@@ -14,6 +15,9 @@ public class UserController {
     @Autowired
     private UserService service;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @GetMapping
     public List<User> getAll() {
         List<User> all = service.getAll();
@@ -22,6 +26,7 @@ public class UserController {
 
     @PostMapping
     public User create(@RequestBody User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return service.create(user);
     }
 
