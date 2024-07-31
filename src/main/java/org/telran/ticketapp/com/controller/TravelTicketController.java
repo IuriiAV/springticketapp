@@ -4,8 +4,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.telran.ticketapp.com.entity.TravelTicket;
+import org.telran.ticketapp.com.exception.TravelTicketNotFoundException;
 import org.telran.ticketapp.com.model.Ticket;
 import org.telran.ticketapp.com.service.TravelTicketService;
 
@@ -24,6 +27,22 @@ public class TravelTicketController {
     @GetMapping
     public List<TravelTicket> getAll() {
         return service.getAll();
+    }
+
+//    @GetMapping("/{id}")
+//    public ResponseEntity getById(@PathVariable Long id) {
+//        try {
+//            TravelTicket travelTicket = service.getById(id);
+//            //return ResponseEntity.ok(travelTicket);
+//            return ResponseEntity.status(HttpStatus.OK).body(travelTicket);
+//        } catch (TravelTicketNotFoundException exception) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+//        }
+//    }
+
+    @GetMapping("/{id}")
+    public TravelTicket getById(@PathVariable Long id) {
+       return service.getById(id);
     }
 
     @PostMapping

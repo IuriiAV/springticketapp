@@ -7,6 +7,9 @@ import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 import org.telran.ticketapp.com.entity.TravelTicket;
 import org.telran.ticketapp.com.entity.User;
+import org.telran.ticketapp.com.exception.NoUniqueUserEmailException;
+import org.telran.ticketapp.com.exception.TravelTicketNotFoundException;
+import org.telran.ticketapp.com.exception.UserNotFoundException;
 import org.telran.ticketapp.com.repository.UserJpaRepository;
 
 import java.util.List;
@@ -25,7 +28,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAll() {
         List<User> all = repository.findAll();
-        log.info("All users : {}", all );
+        log.info("All users : {}", all);
         return repository.findAll();
     }
 
@@ -36,6 +39,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User create(User user) {
+        Optional<User> userFromDb = findByEmail(user.getEmail());
+        if (userFromDb.isPresent()) {
+            throw new NoUniqueUserEmailException("User with email " + user.getEmail() + "" +
+                    " already exists");
+        }
+
 //        TravelTicket travelTicket = user.getTravelTicket();
 //        ticketService.create(travelTicket);
         return repository.save(user);
@@ -43,7 +52,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(long id) {
-        return repository.findById(id).get();
+        return repository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("No user with id " + id));
     }
 
     @Override

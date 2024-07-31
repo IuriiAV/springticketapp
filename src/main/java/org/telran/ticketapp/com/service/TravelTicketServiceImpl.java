@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.telran.ticketapp.com.controller.TravelTicketController;
 import org.telran.ticketapp.com.entity.TravelTicket;
+import org.telran.ticketapp.com.exception.TravelTicketNotFoundException;
 import org.telran.ticketapp.com.repository.TravelTicketJpaRepository;
 
 import java.util.List;
@@ -30,8 +31,9 @@ public class TravelTicketServiceImpl implements TravelTicketService {
 
     @Override
     public TravelTicket getById(Long id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("No ticket with id " + id));
+        TravelTicket travelTicket = repository.findById(id)
+                .orElseThrow(() -> new TravelTicketNotFoundException("No ticket with id " + id));
+        return travelTicket;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package org.telran.ticketapp.com.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.telran.ticketapp.com.model.Ticket;
@@ -34,6 +35,7 @@ public class TicketController {
 
     // /tickets  //http://localhost:8080/tickets/
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('ROLE_USER','ROLE_ADMIN')")
     public List<Ticket> getAll() {
         return service.getAll();
     }

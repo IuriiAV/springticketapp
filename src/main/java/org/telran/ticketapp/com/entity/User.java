@@ -31,6 +31,8 @@ public class User {
 
     private String password;
 
+    private String role = "ROLE_USER";
+
     //user | id | name |
 
     //travel_ticket | id | name | user_id
@@ -56,4 +58,10 @@ public class User {
     @JsonManagedReference
     private Set<Order> orders = new HashSet<>();
 
+    public User(String name, String surname, String email, String password) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
+    }
 }
