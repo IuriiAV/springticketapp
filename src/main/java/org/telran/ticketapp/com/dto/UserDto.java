@@ -24,4 +24,5 @@ public class UserDto {
         this.surname = surname;
         this.email = email;
     }
+
 }
