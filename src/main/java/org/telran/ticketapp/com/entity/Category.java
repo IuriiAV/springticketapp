@@ -5,4 +5,6 @@ public class Category {
     private String name;
 
     private String type;
+
+    private int number;
 }
